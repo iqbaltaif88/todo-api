@@ -11,7 +11,7 @@ CREATE TABLE users (
 );
 
 
-CREATE TABLE todos (
+CREATE TABLE transactions (
   id integer,
   title varchar(200) DEFAULT NULL,
   description varchar(200) DEFAULT NULL,

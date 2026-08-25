@@ -1,24 +1,23 @@
 from database import Base
-from sqlalchemy import Column, Integer, String, Boolean,ForeignKey
+from sqlalchemy import Column, Date, Float, ForeignKey, Integer, String
 
-class Todos(Base):
-    __tablename__ = 'todos'
 
-    id = Column(Integer, primary_key=True , index= True)
-    title = Column(String)
-    description = Column(String)
-    priority = Column(Integer)
-    completed = Column(Boolean, default=False)
-    owner_id = Column(Integer,ForeignKey("users.id"))
+
+
+class Transactions(Base):
+    __tablename__ = 'transactions'
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, nullable=False)
+    amount = Column(Float, nullable=False)
+    type = Column(String, nullable=False)  # "income" or "expense"
+    category = Column(String, nullable=False)
+    date = Column(Date, nullable=False)
+    owner_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 class Users(Base):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True, index=True)
-    email = Column(String, unique=True)
-    username = Column(String, unique=True)
-    firstname = Column(String)
-    lastname = Column(String)
-    hash_password = Column(String)
-    is_active = Column(Boolean, default=True)
-    role = Column(String)
-    phone_number = Column(String)
+    username = Column(String, unique=True, index=True, nullable=False)
+    email = Column(String, unique=True, index=True, nullable=False)
+    hash_password = Column(String, nullable=False)
